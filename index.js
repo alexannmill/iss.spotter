@@ -1,4 +1,9 @@
-const { fetchMyIP, fetchCoordsbyIP, fetchISSFlyTime,nextISSFlyover } = require("./iss");
+const {
+  fetchMyIP,
+  fetchCoordsbyIP,
+  fetchISSFlyTime,
+  nextISSFlyover,
+} = require("./iss");
 
 // fetchMyIP((error, ip) => {
 //   if (error) {
@@ -24,19 +29,17 @@ const { fetchMyIP, fetchCoordsbyIP, fetchISSFlyTime,nextISSFlyover } = require("
 //   }
 // });
 
-const timeConverter = (passTimes) => 
-  passTimes.forEach(times => {
+const timeConverter = (passTimes) =>
+  passTimes.forEach((times) => {
     const dateTime = new Date(0);
     dateTime.setUTCDate(passTimes.risetimes);
     const duration = passTimes.duration;
-    console.log(`next pass as ${dateTime} for ${duration} seconds`)
+    console.log(`next pass as ${dateTime} for ${duration} seconds`);
   });
 
-
-
-  nextISSFlyover((error, passTimes) => {
-    if (error) {
-      console.log( "It didn\'t work! ", error)
-    };
-    timeConverter(passTimes);
-  });
+nextISSFlyover((error, passTimes) => {
+  if (error) {
+    console.log("It didn't work! ", error);
+  }
+  timeConverter(passTimes);
+});

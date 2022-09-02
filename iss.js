@@ -34,8 +34,9 @@ const fetchCoordsbyIP = (ip, callback) => {
       callback(Error(msg), null);
       return;
     }
-    const latitude = data.latitude;
-    const longitude = data.longitude;
+    const dataCoor = JSON.parse(body)
+    const latitude = dataCoor.latitude;
+    const longitude = dataCoor.longitude;
     const coord = { lat: latitude, long: longitude };
     callback(null, coord);
   });
@@ -54,8 +55,8 @@ fetchISSFlyTimes = (coord, callback) => {
         callback(Error(msg), null);
         return;
       }
-      const data = JSON.parse(body);
-      const times = data.response;
+      const flyData = JSON.parse(body);
+      const times = flyData.response;
       callback(null, times);
     }
   );
